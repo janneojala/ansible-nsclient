@@ -23,10 +23,15 @@
     wait: True
   when: not msipackagestat.stat.exists
 
-- name: Update NSCclient++ configuration
+- name: Update NSClient++ configuration
   win_template:
     src: programfiles/nsclient/nsclient.ini.j2
     dest: "C:\\Program Files\\NSClient++\\nsclient.ini"
   notify: restart nsclient
   tags:
     - configuration
+
+- name: Restart NSClient++
+  win_service:
+    name: nscp
+    state: restarted
