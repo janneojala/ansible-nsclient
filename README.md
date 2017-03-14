@@ -11,7 +11,7 @@ NSClient++ [NSClient](https://https://www.nsclient.org//) role for Ansible
 * `nsclient_nrpe_insecure`: [default: false]:
 * `nsclient_nrpe_allow_arguments`: [default: true]: COMMAND ARGUMENT PROCESSING - This option determines whether or not the we will allow clients to specify arguments to commands that are executed.
 * `nsclient_nrpe_verify_mode`: [default: none]:
-* `nsclient_nrpe_insecure`: [default: true]:
+* `nsclient_nrpe_insecure`: [default: false]:
 * `nsclient_modules_checkexternalscripts`: [default: 1]:
 * `nsclient_modules_checkhelpers`: [default: 1]:
 * `nsclient_modules_checkeventlog`: [default: 1]:
@@ -26,12 +26,7 @@ NSClient++ [NSClient](https://https://www.nsclient.org//) role for Ansible
 
 None
 
-#### SSL Termination 1
-
-* **Single core**
-* Multiple certificates (SNI)
-* Global monitoring
-* Multiple web servers
+#### Basic installation
 
 ```yaml
 ---
@@ -40,7 +35,9 @@ None
     - janneojala.ansible-nsclient
   vars:
     nsclient_settings_password: CHANGE_ON_INSTALL
-	nsclient_settings_allowed_hosts: 127.0.0.1,::1
+    nsclient_settings_allowed_hosts: 127.0.0.1,::1
+
+```
 
 #### License
 
