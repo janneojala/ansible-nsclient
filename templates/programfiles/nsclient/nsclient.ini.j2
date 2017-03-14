@@ -5,61 +5,45 @@
 # For details run: nscp settings --help
 
 
-; TODO
 [/settings/default]
 
-; Undocumented key
 password = {{ nsclient_settings_password }}
 
-; Undocumented key
 allowed hosts = {{ nsclient_settings_allowed_hosts }}
 
 
-; TODO
 [/settings/NRPE/server]
 
-; Undocumented key
 ssl options = {{ nsclient_nrpe_ssloptions }}
 
-; Undocumented key
 verify mode = {{ nsclient_nrpe_verify_mode }}
 
-; Undocumented key
 insecure = {{ nsclient_nrpe_insecure }}
 
 allow arguments = {{ nsclient_nrpe_allow_arguments }}
 verify mode = {{ nsclient_nrpe_verify_mode }}
-insecure = {{ nsclient_nrpe_insecure: true }}
+insecure = {{ nsclient_nrpe_insecure }}
 
-; TODO
 [/modules]
 
-; Undocumented key
 CheckExternalScripts = {{ nsclient_modules_checkexternalscripts }}
 
-; Undocumented key
 CheckHelpers = {{ nsclient_modules_checkhelpers }}
 
-; Undocumented key
 CheckEventLog = {{ nsclient_modules_checkeventlog }}
 
-; Undocumented key
 CheckNSCP = {{ nsclient_modules_checknscp }}
 
-; Undocumented key
 CheckDisk = {{ nsclient_modules_checkdisk }}
 
-; Undocumented key
 CheckSystem = {{ nsclient_modules_checksystem }}
 
-; Undocumented key
 NRPEServer = {{ nsclient_modules_nrpeserver }}
 
 [/settings/external scripts]
 allow arguments={{ nsclient_external_scripts_allow_arguments }}
 
 [/settings/external scripts/scripts]
-
-{% for external_script in external_scripts %}
+{% for external_script in nsclient_external_scripts %}
 {{ external_script.name }}={{ external_script.command }}
 {% endfor %}
