@@ -1,0 +1,13 @@
+# meta file for nsclient
+---
+galaxy_info:
+  author: Janne Ojala
+  company: Haahtela-kehitys Oy
+  description: Set up NSClient++
+  license: MIT
+  platforms:
+    - name: Windows
+  galaxy_tags:
+    - nsclient
+    - nagios
+dependencies: []

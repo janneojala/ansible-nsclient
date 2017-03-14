@@ -1,0 +1,32 @@
+# tasks file for NSClient++
+---
+
+- name: Create setup folder
+  win_file:
+    path: C:\setup
+    state: directory
+
+- name: Check for "NSClient++"
+  win_stat:
+    path: "c:\\setup\\NSCP-0.5.0.62-x64.msi"
+  register: msipackagestat
+
+- name: Download "NSClient++"
+  win_get_url:
+    url: "https://github.com/mickem/nscp/releases/download/0.5.0.62/NSCP-0.5.0.62-x64.msi"
+    dest: "C:\\setup\\NSCP-0.5.0.62-x64.msi"
+  when: not msipackagestat.stat.exists
+
+- name: Install "NSClient++"
+  win_msi:
+    path: "C:\\setup\\NSCP-0.5.0.62-x64.msi"
+    wait: True
+  when: not msipackagestat.stat.exists
+
+- name: Update NSCclient++ configuration
+  win_template:
+    src: programfiles/nsclient/nsclient.ini.j2
+    dest: "C:\\Program Files\\NSClient++\\nsclient.ini"
+  notify: restart nsclient
+  tags:
+    - configuration

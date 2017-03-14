@@ -1,0 +1,7 @@
+# handlers file for NSClient++
+---
+- name: restart nsclient
+  become: yes
+  win_service:
+    name: nscp
+    state: restarted
