@@ -6,43 +6,70 @@
 
 
 [/settings/default]
-
+{% if nsclient_settings_password is defined  %}
 password = {{ nsclient_settings_password }}
-
+{% else %}
+password = CHANGE_ON_INSTALL
+{% endif %}
+{% if nsclient_settings_allowed_hosts is defined  %}
 allowed hosts = {{ nsclient_settings_allowed_hosts }}
-
+{% else %}
+allowed hosts = 127.0.0.1
+{% endif %}
 
 [/settings/NRPE/server]
-
+{% if nsclient_nrpe_ssloptions is defined  %}
 ssl options = {{ nsclient_nrpe_ssloptions }}
-
-verify mode = {{ nsclient_nrpe_verify_mode }}
-
+{% endif %}
+{% if nsclient_nrpe_insecure is defined  %}
 insecure = {{ nsclient_nrpe_insecure }}
-
+{% endif %}
+{% if nsclient_nrpe_allow_arguments is defined  %}
 allow arguments = {{ nsclient_nrpe_allow_arguments }}
+{% endif %}
+{% if nsclient_nrpe_verify_mode is defined  %}
 verify mode = {{ nsclient_nrpe_verify_mode }}
-insecure = {{ nsclient_nrpe_insecure }}
+{% endif %}
 
 [/modules]
-
+{% if nsclient_modules_checkexternalscripts is defined  %}
 CheckExternalScripts = {{ nsclient_modules_checkexternalscripts }}
-
+{% else %}
+CheckExternalScripts = 1
+{% endif %}
+{% if nsclient_modules_checkhelpers is defined  %}
 CheckHelpers = {{ nsclient_modules_checkhelpers }}
-
+{% else %}
+CheckHelpers = 1
+{% endif %}
+{% if nsclient_modules_checkeventlog is defined  %}
 CheckEventLog = {{ nsclient_modules_checkeventlog }}
-
+{% else %}
+CheckEventLog = 1
+{% endif %}
+{% if nsclient_modules_checknscp is defined  %}
 CheckNSCP = {{ nsclient_modules_checknscp }}
-
+{% else %}
+CheckNSCP = 1
+{% endif %}
+{% if nsclient_modules_checkdisk is defined  %}
 CheckDisk = {{ nsclient_modules_checkdisk }}
-
+{% else %}
+CheckDisk =1
+{% endif %}
+{% if nsclient_modules_checksystem is defined  %}
 CheckSystem = {{ nsclient_modules_checksystem }}
-
+{% else %}
+CheckSystem =1
+{% endif %}
+{% if nsclient_modules_nrpeserver is defined  %}
 NRPEServer = {{ nsclient_modules_nrpeserver }}
-
+{% else %}
+{% endif %}
 [/settings/external scripts]
+{% if nsclient_external_scripts_allow_arguments is defined  %}
 allow arguments={{ nsclient_external_scripts_allow_arguments }}
-
+{% endif %}
 [/settings/external scripts/scripts]
 {% for external_script in nsclient_external_scripts %}
 {{ external_script.name }}={{ external_script.command }}
