@@ -32,7 +32,7 @@ None
 ---
 - hosts: all
   roles:
-    - janneojala.ansible-nsclient
+    - janneojala.nsclient
   vars:
     nsclient_settings_password: CHANGE_ON_INSTALL
     nsclient_settings_allowed_hosts: 127.0.0.1,::1
