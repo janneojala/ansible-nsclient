@@ -1,14 +1,6 @@
-## strongswan
+## nsclient
 
-Set up Strongswan [Strongswan](https://www.strongswan.org//) in Ubuntu systems.
-
-#### Requirements
-
-* `python-apt`
-
-## Dependencies
-
-None
+Set up NSClient++ [NSClient](https://https://www.nsclient.org//).
 
 #### License
 
@@ -20,4 +12,4 @@ Janne Ojala
 
 #### Issues
 
-Are [welcome](https://github.com/janneojala/ansible-strongswan/issues)!
+Are [welcome](https://github.com/janneojala/ansible-nsclient/issues)!
