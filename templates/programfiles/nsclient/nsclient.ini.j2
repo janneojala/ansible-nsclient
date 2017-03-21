@@ -9,9 +9,8 @@
 [/settings/default]
 {% if nsclient_settings_password is defined  %}
 password = {{ nsclient_settings_password }}
-{% else %}
-password = CHANGE_ON_INSTALL
 {% endif %}
+; ALLOWED HOSTS - A comaseparated list of allowed hosts. You can use netmasks (/ syntax) or * to create ranges.
 {% if nsclient_settings_allowed_hosts is defined  %}
 allowed hosts = {{ nsclient_settings_allowed_hosts }}
 {% else %}
@@ -34,20 +33,37 @@ verify mode = {{ nsclient_nrpe_verify_mode }}
 
 [/modules]
 
-#Execute external scripts
-CheckExternalScripts = {{ nsclient_modules_checkexternalscripts | default(1) }}
-
-CheckHelpers = {{ nsclient_modules_checkhelpers | default(1) }}
-
-CheckEventLog = {{ nsclient_modules_checkeventlog | default(1) }}
-
-CheckNSCP = {{ nsclient_modules_checknscp | default(1) }} 
-
+; CheckDisk - CheckDisk can check various file and disk related things. The current version has commands to check Size of hard drives and directories.
 CheckDisk = {{ nsclient_modules_checkdisk | default(1) }}
 
+; Event log Checker. - Check for errors and warnings in the event log. This is only supported through NRPE so if you plan to use only NSClient this wont help you at all.
+CheckEventLog = {{ nsclient_modules_checkeventlog | default(1) }}
+
+; Check External Scripts - A simple wrapper to run external scripts and batch files.
+CheckExternalScripts = {{ nsclient_modules_checkexternalscripts | default(1) }}
+
+; Helper function - Various helper function to extend other checks. This is also only supported through NRPE.
+CheckHelpers = {{ nsclient_modules_checkhelpers | default(1) }}
+
+
+; Check NSCP - Checkes the state of the agent
+CheckNSCP = {{ nsclient_modules_checknscp | default(1) }}
+
+; CheckSystem - Various system related checks, such as CPU load, process state, service state memory usage and PDH counters.
 CheckSystem = {{ nsclient_modules_checksystem | default(1) }}
 
+
+; CheckWMI - CheckWMI can check various file and disk related things. The current version has commands to check Size of hard drives and directories.
+CheckWMI = {{ nsclient_modules_checkwmi | default(1) }}
+
+; NRPE server - A simple server that listens for incoming NRPE connection and handles them.
 NRPEServer = {{ nsclient_modules_nrpeserver | default(1) }}
+
+; NSCAClient - Passive check support over NSCA.
+NSCAClient = {{ nsclient_modules_nscaclient | default(1) }}
+
+; NSClient server - A simple server that listens for incoming NSClient (check_nt) connection and handles them. Although NRPE is the preferred method NSClient is fully supported and can be used for simplicity or for compatibility.
+NSClientServer = {{ nsclient_modules_nsclientserver | default(1) }}
 
 [/settings/external scripts]
 {% if nsclient_external_scripts_allow_arguments is defined  %}
@@ -57,3 +73,4 @@ allow arguments={{ nsclient_external_scripts_allow_arguments }}
 {% for external_script in nsclient_external_scripts %}
 {{ external_script.name }}={{ external_script.command }}
 {% endfor %}
+
