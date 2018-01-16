@@ -2,3 +2,5 @@
 ---
 
 #config setup section
+nsclient_download_loc: 'https://github.com/mickem/nscp/releases/download/0.5.0.62'
+nsclient_package_name: 'NSCP-0.5.0.62-x64.msi'
