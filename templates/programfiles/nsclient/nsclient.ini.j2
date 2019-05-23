@@ -27,6 +27,9 @@ insecure = {{ nsclient_nrpe_insecure }}
 {% if nsclient_nrpe_allow_arguments is defined  %}
 allow arguments = {{ nsclient_nrpe_allow_arguments }}
 {% endif %}
+{% if nsclient_nrpe_allow_nasty_chars is defined  %}
+allow nasty characters = {{ nsclient_nrpe_allow_nasty_chars }}
+{% endif %}
 {% if nsclient_nrpe_verify_mode is defined  %}
 verify mode = {{ nsclient_nrpe_verify_mode }}
 {% endif %}
@@ -68,6 +71,9 @@ NSClientServer = {{ nsclient_modules_nsclientserver | default(1) }}
 [/settings/external scripts]
 {% if nsclient_external_scripts_allow_arguments is defined  %}
 allow arguments={{ nsclient_external_scripts_allow_arguments }}
+{% endif %}
+{% if nsclient_external_scripts_allow_nasty_chars is defined  %}
+allow arguments = {{ nsclient_external_scripts_allow_nasty_chars }}
 {% endif %}
 [/settings/external scripts/scripts]
 {% for external_script in nsclient_external_scripts %}
