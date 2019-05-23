@@ -1,6 +1,7 @@
 # meta file for nsclient
 ---
 galaxy_info:
+  role_name: nsclient
   author: Janne Ojala
   company: Haahtela-kehitys Oy
   description: Set up NSClient++
