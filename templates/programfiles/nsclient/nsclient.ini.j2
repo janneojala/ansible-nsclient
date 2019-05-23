@@ -73,7 +73,7 @@ NSClientServer = {{ nsclient_modules_nsclientserver | default(1) }}
 allow arguments={{ nsclient_external_scripts_allow_arguments }}
 {% endif %}
 {% if nsclient_external_scripts_allow_nasty_chars is defined  %}
-allow arguments = {{ nsclient_external_scripts_allow_nasty_chars }}
+allow nasty characters = {{ nsclient_external_scripts_allow_nasty_chars }}
 {% endif %}
 [/settings/external scripts/scripts]
 {% for external_script in nsclient_external_scripts %}
