@@ -18,10 +18,10 @@
   when: not msipackagestat.stat.exists
 
 - name: Install "NSClient++"
-  win_msi:
-    path: "C:\\setup\\NSCP-0.5.0.62-x64.msi"
-    wait: True
-  when: not msipackagestat.stat.exists
+  win_package:
+    path: C:\setup\NSCP-0.5.0.62-x64.msi
+    product_id: '{1B7FBEBA-96B5-4837-82C8-B3EED3BFC9D8}'
+    state: present
 
 - name: Update NSClient++ configuration
   win_template:
@@ -31,7 +31,7 @@
   tags:
     - configuration
 
-- name: Restart NSClient++
+- name: Ensure NSClient++ is running
   win_service:
     name: nscp
-    state: restarted
+    state: started
